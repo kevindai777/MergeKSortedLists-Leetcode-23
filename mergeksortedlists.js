@@ -1,8 +1,8 @@
 //Objective is to sort 'k' linked-lists and return a linked-list with sorted values.
 
 class Node {
-    constructor(data, next = null) { //if next is not given, assume it is empty
-      this.data = data
+    constructor(val, next = null) { //if next is not given, assume it is empty
+      this.val = val
       this.next = next
     }
 }
@@ -47,7 +47,7 @@ let arr = []
 
 for (let list of lists) {
     while (list) {
-        arr.push(list.data)
+        arr.push(list.val)
         list = list.next
     }
 }
