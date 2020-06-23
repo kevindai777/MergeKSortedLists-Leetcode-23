@@ -52,6 +52,7 @@ for (let list of lists) {
     }
 }
 
+//Sort them from greatest to least to pop out later
 arr.sort((a,b) => {
     return b - a
 })
