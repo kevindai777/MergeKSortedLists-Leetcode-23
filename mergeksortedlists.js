@@ -67,3 +67,55 @@ while (arr.length) {
 }
 
 return newNode.next
+
+
+//O(nlogk) where n is the length of the longest linked list and k is the number of lists
+//Divide-And-Conquer solution that does continuous merges on the lists until it is one list
+
+if (lists.length == 0) {
+    return null
+}
+
+let interval = 1
+
+//Keep growing the interval until it's past the list length
+while (interval < lists.length) {
+
+    //Make sure the iteration ends with enough space for the last interval
+    //Each loop will go through the list and merge them into (lists / 2) size
+    for (let i = 0; i < lists.length - interval; i += interval * 2) {
+        lists[i] = mergeTwoLists(lists[i], lists[i + interval])
+    }
+
+    //increment the interval for next merge
+    interval *= 2
+}
+
+function mergeTwoLists(l1, l2) {
+    let newNode = new ListNode(-1)
+    let temp = newNode
+
+    while (l1 && l2) {
+        if (l1.val < l2.val) {
+            temp.next = l1
+            temp = temp.next 
+            l1 = l1.next
+        } else {
+            temp.next = l2
+            temp = temp.next 
+            l2 = l2.next
+        }
+    }
+
+    if (l1) {
+        temp.next = l1
+    }
+
+    if (l2) {
+        temp.next = l2
+    }
+
+    return newNode.next
+}
+
+return lists[0]
